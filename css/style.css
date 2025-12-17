@@ -1,6 +1,123 @@
 :root {
 	--background_color: #1c1b22
+	--a_list_heights: 40px;
+    --a_list_top_margin: 15px;
+    --a_list_width: 400px;
+    --a_hover_color: royalblue;
+    --background_color: #1c1b22;
+    --list_background_color: aliceblue;
+    --list_font_color: black;
 }
 body {
 	background-color: var(--background_color);
+}
+div.center {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 75px;
+    min-height: calc(60vh - 70px);
+}
+a.list_link{
+    background-color: aliceblue;
+    border-radius: 5px;
+    border: .2px solid;
+    color: black;
+    font-size: 25px;
+    font-weight: bold;
+    height: var(--a_list_heights);
+    line-height: var(--a_list_heights);
+    margin-top: var(--a_list_top_margin);
+    text-align: center;
+    text-decoration: none;
+    width: var(--a_list_width)
+}
+hr.list_line {
+    margin-top: var(--a_list_top_margin);
+    margin-bottom: calc(var(--a_list_top_margin) - 15px );
+    width: var(--a_list_width)
+}
+a:hover.list_link {
+    color: var(--a_hover_color)
+}
+img.imageframe {
+    max-width: 350px; 
+    max-height: 350px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border: 3px solid;
+    margin-bottom: 20px 
+}
+div.equipment_center {
+    display: flex;
+    align-items: center; 
+    flex-direction: column;
+    justify-content: flex-start; 
+    margin-top: 70px; 
+    min-height: calc(100vh - 70px);
+}
+div.list {
+    background-color: var(--list_background_color);
+    color: var(--list_font_color);
+    border: 1px solid;
+    font-size: 20px;
+    margin: 10px;
+    text-align: center;
+    width: fit-content;
+}
+ul.equipment_list {
+    border: 2px solid;
+    width: fit-content;
+    margin: auto;
+    width: 400px;
+    text-align: justify;
+}
+ul.list {
+    border: 2px solid;
+    width: fit-content;
+    margin: auto;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    max-width: 1000px;
+}
+li.inline {
+    display: inline;
+    margin: 0;
+    padding: 0;
+}
+img.list {  /*Fav Games image styling for Mobile Device*/
+    width: 150px;
+    height: 150px;
+    display: block;
+}
+@media (min-width: 768px) { /*Fav Games Images styling for desktop*/
+    img.list {
+        width: 200px;
+        height: 200px;
+        display: block;
+    }
+}
+p.stickyheader {
+    background-color: aliceblue;
+    border: 4px solid;
+    display: block;
+    font-size: 30px;
+    font-weight: bold;
+    margin: -50px;
+    margin-left: auto;
+    margin-right: auto;
+    position: -webkit-sticky;
+    text-align: center;
+    margin-top: 60px;
+}
+p.textbox {
+    background-color: aliceblue;
+    border: .2px solid;
+    width: 450px;
+    color: black;
+    display: block;
+    font-size: 25px;
+    /* font-weight: bold; */
+    text-align: center;
 }

@@ -1,44 +1,43 @@
-// Check if we are currently inside the /p/ folder
-let isSubPage = window.location.pathname.includes('/p/');
-let prefix = isSubPage ? '../' : '';
+// This function finds the root of your project (advsite-v4)
+// by looking for the "p" folder or current depth.
+let path = window.location.pathname;
+let isSubPage = path.includes('/p/');
+let rootPrefix = isSubPage ? '../' : '';
 
-// Fetch nav.html from the root
-fetch(prefix + 'nav.html')
-  .then(res => {
-    if (!res.ok) throw new Error('Nav not found');
-    return res.text();
+fetch(rootPrefix + 'nav.html')
+  .then(response => {
+    if (!response.ok) throw new Error("Could not find nav.html");
+    return response.text();
   })
-  .then(text => {
+  .then(data => {
     let oldelem = document.querySelector("script#navbar");
     let newelem = document.createElement("div");
-    newelem.innerHTML = text;
+    newelem.innerHTML = data;
     oldelem.parentNode.replaceChild(newelem, oldelem);
 
-    // Load nav.css from the root css folder
+    // 1. Link the CSS from the /css/ folder
     let navStyle = document.createElement("link");
     navStyle.rel = "stylesheet";
-    navStyle.href = prefix + "css/nav.css"; 
+    navStyle.href = rootPrefix + "css/nav.css";
     document.head.appendChild(navStyle);
 
-    let currentPath = window.location.pathname;
-    let currentPage = currentPath.split("/").pop() || "index.html";
-    let navLinks = document.querySelectorAll('ul.nav a');
-
+    // 2. Fix the links inside the nav so they work from subfolders
+    let navLinks = newelem.querySelectorAll('a');
     navLinks.forEach(link => {
-      let linkHref = link.getAttribute('href');
+      let href = link.getAttribute('href');
       
-      // If the link in nav.html is "index.html", but we are in /p/, 
-      // we need to fix the link to point to "../index.html"
-      if (isSubPage && !linkHref.startsWith('http') && !linkHref.startsWith('/p/')) {
-          link.setAttribute('href', '../' + linkHref);
+      // If we are in /p/, and the link doesn't go to another subpage, add ../
+      if (isSubPage && !href.startsWith('http') && !href.startsWith('p/') && !href.startsWith('../')) {
+        link.setAttribute('href', rootPrefix + href);
       }
+    });
 
-      let normalizedLink = linkHref.replace(/^\/p\//, '').replace(/^\//, '');
-      let normalizedPage = currentPage.replace(/^\/p\//, '').replace(/^\//, '');
-
-      if (normalizedLink === normalizedPage) {
+    // 3. Set Active Class
+    let currentPage = path.split("/").pop() || "index.html";
+    navLinks.forEach(link => {
+      if (link.getAttribute('href').includes(currentPage)) {
         link.classList.add('nav_active');
       }
     });
   })
-  .catch(err => console.error('Error loading navigation:', err));
+  .catch(err => console.error("Navbar error:", err));

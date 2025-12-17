@@ -48,14 +48,7 @@ img.imageframe {
     border: 3px solid;
     margin-bottom: 20px 
 }
-div.equipment_center {
-    display: flex;
-    align-items: center; 
-    flex-direction: column;
-    justify-content: flex-start; 
-    margin-top: 70px; 
-    min-height: calc(100vh - 70px);
-}
+
 div.list {
     background-color: var(--list_background_color);
     color: var(--list_font_color);
@@ -65,13 +58,7 @@ div.list {
     text-align: center;
     width: fit-content;
 }
-ul.equipment_list {
-    border: 2px solid;
-    width: fit-content;
-    margin: auto;
-    width: 400px;
-    text-align: justify;
-}
+
 ul.list {
     border: 2px solid;
     width: fit-content;
@@ -80,23 +67,6 @@ ul.list {
     display: flex;
     justify-content: center;
     max-width: 1000px;
-}
-li.inline {
-    display: inline;
-    margin: 0;
-    padding: 0;
-}
-img.list {  /*Fav Games image styling for Mobile Device*/
-    width: 150px;
-    height: 150px;
-    display: block;
-}
-@media (min-width: 768px) { /*Fav Games Images styling for desktop*/
-    img.list {
-        width: 200px;
-        height: 200px;
-        display: block;
-    }
 }
 p.stickyheader {
     background-color: aliceblue;

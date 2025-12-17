@@ -1,0 +1,19 @@
+@import "style.css";
+
+li.inline {
+    display: inline;
+    margin: 0;
+    padding: 0;
+}
+img.list {  /*Fav Games image styling for Mobile Device*/
+    width: 150px;
+    height: 150px;
+    display: block;
+}
+@media (min-width: 768px) { /*Fav Games Images styling for desktop*/
+    img.list {
+        width: 200px;
+        height: 200px;
+        display: block;
+    }
+}
